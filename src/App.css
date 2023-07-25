@@ -1,17 +1,16 @@
 body {
   font-size: 100%;
+  font-weight: bold;
 }
 
 h1 {
   text-align: center;
 }
 
-li {
-  margin-top: 8px;
-}
-
-li button {
-  
+.info-max {
+  text-align: center;
+  font-size: 20px;
+  color: brown;
 }
 
 .input-area {
@@ -22,8 +21,20 @@ li button {
   margin-left: 5px;
 }
 
-.list-row {
-  align-items: center;
+.select-button {
+  margin-left: 5px;
+}
+
+.progress {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.list-string {
+  background-color: white;
+  padding: 3px;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 .list-button {
@@ -31,8 +42,8 @@ li button {
 }
 
 .incomplete-area, .complete-area {
-  width: 500px;
-  max-height: 300px;
+  width: 800px;
+  height: 300px;
   margin: 0 auto;
   padding: 10px 0;
   margin-top: 20px;
@@ -45,4 +56,12 @@ li button {
 
 .complete-area {
   background-color: rgba(100, 0, 0, 0.2) ;
+}
+
+.title {
+  text-align: center;
+  margin: 10px auto;
+  width: 200px;
+  background-color:burlywood;
+  font: bold;
 }
