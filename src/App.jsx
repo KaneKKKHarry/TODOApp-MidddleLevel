@@ -5,11 +5,14 @@ import CompleteTodo from "./components/CompleteTodo"
 import EditTodo from "./components/EditTodo"
 
 export const App= () => {
-  const [incompleteTodoLists, setIncompleteTodoLists] = useState([{id: 0,content: '資格学習'}])
+  const [incompleteTodoLists, setIncompleteTodoLists] = useState([{id: 0,content: '資格学習', progress: '25%'}])
   const [completeTodoLists, setCompleteTodoLists] = useState([{id:1 ,content: 'Java学習'}])
+  // const [filteredIncompleteTodoLists, setFilteredIncompleteTodoLists] = useState([])
   const [todoId, setTodoId] = useState(2)
   const [todoContent, setTodoContent] = useState('')
+  const [editTodoId, setEditTodoId] = useState('')
   const [isEditable, setIsEditable] = useState(false)
+  const [filteringIncompleteTodoLists, setFilteringIncompleteTodoLists] = useState('0%')
 
   const handleGetTodoContent = (e) => {
     setTodoContent(e.target.value)
@@ -39,19 +42,50 @@ export const App= () => {
     setIncompleteTodoLists(newIncompleteTodoLists)
   }
   const showEdit = (targetTodo) => {
+    // console.log(targetTodo)
     setIsEditable(!isEditable)
     setTodoContent(targetTodo.content)
+    setEditTodoId(targetTodo.id)
   }
-  const handleEditTodoContent = (targetTodo) => {
-    const newIncompleteTodoLists = [...incompleteTodoLists]
-    newIncompleteTodoLists[targetTodo.id].content = todoContent
-    setIncompleteTodoLists(newIncompleteTodoLists)
+  const handleEditTodoContent = () => {
+    const newIncompleteTodoLists = incompleteTodoLists.map((todo) => {
+      if (todo.id === editTodoId) {
+        todo.content = todoContent
+      }
+      })
+    setCompleteTodoLists(newIncompleteTodoLists)
+    // console.log(targetTodo)
+    // const newIncompleteTodoLists = [...incompleteTodoLists]
+    // newIncompleteTodoLists[targetTodo.id].content = todoContent
+    // setIncompleteTodoLists(newIncompleteTodoLists)
   }
     const handleCancel = () => {
     setIsEditable(!isEditable)
     setTodoContent('')
   }
+    // const handleFilterIncompleteTodoLists = () => {
+    //   const filterIncompleteLists = 
+    // }
 
+  // useEffect = (() => {
+  //   const filteringIncompleteTodoLists = () => {
+  //     switch (filteringIncompleteTodoLists) {
+  //       case '0%':
+  //       setFilteredIncompleteTodoLists(incompleteTodoLists.filter((incompleteTodo)=>incompleteTodo.progress === '0%'))
+  //       break
+  //       case '25%':
+  //       setFilteredIncompleteTodoLists(incompleteTodoLists.filter((incompleteTodo)=>incompleteTodo.progress === '25%'))
+  //       break
+  //       case '50%':
+  //       setFilteredIncompleteTodoLists(incompleteTodoLists.filter((incompleteTodo)=>incompleteTodo.progress === '50%'))
+  //       break
+  //       case '75%':
+  //       setFilteredIncompleteTodoLists(incompleteTodoLists.filter((incompleteTodo)=>incompleteTodo.progress === '75%'))
+  //       break
+  //     }
+  //   }
+  //   filteringIncompleteTodoLists()
+  // },[filteringIncompleteTodoLists, incompleteTodoLists])
 
   return (
     <>
@@ -63,6 +97,7 @@ export const App= () => {
             todo={todoContent}
             onChange={handleGetTodoContent}
             onClick={handleAddTodoContent}
+  /*           filter={handleFilterIncompleteTodoLists} */
           />
           :
           <p className="info-max">登録できるTODOの上限です</p>
@@ -84,6 +119,7 @@ export const App= () => {
       <CompleteTodo
         CompleteLists={completeTodoLists}
         Back={handleBackTodoContent}
+        Edit={showEdit}
       />
       
     </>

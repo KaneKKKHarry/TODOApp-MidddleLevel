@@ -3,6 +3,7 @@ import '../App.css'
 
 export default function IncompleteTodo(props) {
     const { IncompleteLists, Complete, Delete, Edit } = props
+    console.log(IncompleteLists)
 
     return (
         <div id='incomplete' className='incomplete-area'>
@@ -10,8 +11,7 @@ export default function IncompleteTodo(props) {
             <ol className='list-row'>
                 {IncompleteLists.map((todo)=> {
                     return(
-                        <>
-                            <li key={IncompleteLists.id}>
+                            <li key={todo.id}>
                                 <span className='list-string'>{todo.content}</span>
                                 <span>
                                     <button onClick={()=>Complete(todo)} className='list-button'>完了</button>
@@ -28,7 +28,6 @@ export default function IncompleteTodo(props) {
                                 <span className='progress'>対応期限</span>
                                 <input type='date'/>
                             </li>
-                        </>
                     )
                 })}
             </ol>

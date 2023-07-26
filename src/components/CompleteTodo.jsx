@@ -9,13 +9,11 @@ import '../App.css'
             <ol className='list-row'>
                 {CompleteLists.map((todo)=> {
                         return(
-                            <>
-                                <li key={CompleteLists.id}>
+                                <li key={todo.id}>
                                     <span className='list-string'>{todo.content}</span>
                                     <button onClick={()=>Back(todo)} className='list-button'>戻す</button>
                                     <button onClick={()=>Edit(todo)} className='list-button'>編集</button>
                                 </li>
-                            </>
                         )
                 })}
             </ol>
